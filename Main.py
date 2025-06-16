@@ -471,8 +471,7 @@ k_vec = [kx, ky, kz]
 
 
 # %%
-
-""" Num_of_mean = 10                  # Hvor mange univers der udregnes til at bestemme middelværdigen.
+Num_of_mean = 10                  # Hvor mange univers der udregnes til at bestemme middelværdigen.
 Number_points = 11
 Redshifts = np.linspace(10, 15, Number_points)
 
@@ -493,29 +492,29 @@ for z in Redshifts:
         J_1LPT = Det_Jacobian(Psi1_vec_k, k_vec)
         J_2LPT = Det_Jacobian(Psi2_vec_k, k_vec)
 
-        n_shell_1LPT = np.sum(J_1LPT <= 0) #/(N**3)      # Kriteriet for shell-crossing det(J) <= 0
-        n_shell_2LPT = np.sum(J_2LPT <= 0) #/(N**3)
+        n_shell_1LPT = np.sum(J_1LPT <= 0) #/N**3     # Kriteriet for shell-crossing det(J) <= 0
+        n_shell_2LPT = np.sum(J_2LPT <= 0) #/N**3
 
         S_cros_1LPT.append(n_shell_1LPT)
         S_cros_2LPT.append(n_shell_2LPT)
 
-    Middel_S_1LPT = np.mean(S_cros_1LPT)
-    Standartafvigelse_1LPT = np.std(S_cros_1LPT)
-    Middel_S_2LPT  = np.mean(S_cros_2LPT)
-    Standartafvigelse_2LPT = np.std(S_cros_2LPT)
+    Middel_1LPT = np.mean(S_cros_1LPT)
+    STD_1LPT = np.std(S_cros_1LPT)
+    Middel_2LPT  = np.mean(S_cros_2LPT)
+    STD_2LPT = np.std(S_cros_2LPT)
 
     print("-----------Redshift =" ,f"{z}", "------")
-    print("Middel 1LPT: ", Middel_S_1LPT)
-    print("STD 1LPT", Standartafvigelse_1LPT)
+    print("Middel 1LPT: ", Middel_1LPT)
+    print("STD 1LPT", STD_1LPT)
 
-    print("Middel 2LPT", Middel_S_2LPT)
-    print("STD 2LPT", Standartafvigelse_2LPT)
+    print("Middel 2LPT", Middel_2LPT)
+    print("STD 2LPT", STD_2LPT)
     
     
-    Shell_crossing_1LPT_mean.append(Middel_S_1LPT)
-    Shell_crossing_2LPT_mean.append(Middel_S_2LPT)
-    Shell_crossing_1LPT_std.append(Standartafvigelse_1LPT)
-    Shell_crossing_2LPT_std.append(Standartafvigelse_2LPT) """
+    Shell_crossing_1LPT_mean.append(Middel_1LPT)
+    Shell_crossing_2LPT_mean.append(Middel_2LPT)
+    Shell_crossing_1LPT_std.append(STD_1LPT)
+    Shell_crossing_2LPT_std.append(STD_2LPT)
 
 # %%
 
@@ -532,7 +531,7 @@ data = np.column_stack((Redshifts, Shell_crossing_1LPT_mean,
 
 header = "Redshift SC_1LPT_mean SC_1LPT_std SC_2LPT_mean SC_2LPT_std"
 
-np.savetxt(full_path, data, delimiter=" ", fmt='%.10e', header=header, comments='')
+np.savetxt(full_path, data, delimiter=" ", fmt='%.10e', header=header, comments='')"""
 
 
 plt.figure(figsize=(8, 5))
@@ -549,7 +548,6 @@ plt.xlabel('z')
 plt.ylabel(r'Antal shell-crossing begivenheder')
 plt.legend(loc='best')
 plt.grid()
- """
 
 
 # %%
